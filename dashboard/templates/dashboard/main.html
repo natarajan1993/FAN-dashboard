@@ -1,0 +1,28 @@
+{% extends 'dashboard/base.html' %}
+{%load static%}
+{% block main %}  
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-1">
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extrajs %}
+<script  src="{% static 'js/dashboard.js' %}"></script>
+
+<script>
+    var webSocket = new WebSocket('ws://' + window.location.host + '/index/');
+
+        webSocket.onmessage = function(e) {
+            console.log(e.data)
+            doPoll()
+        };
+        
+        webSocket.onclose = function(e) {
+            console.error('Socket closed unexpectedly');
+        };
+</script>
+{% endblock %}
